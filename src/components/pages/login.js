@@ -1,9 +1,8 @@
 import React, {Component } from 'react';
-// import PropTypes from 'prop-types';
 import LoginCss from './Login.css';
-// import Home from './home';
-// import { Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import history from './../../history';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 const validateForm = errors => {
     let valid = true;
@@ -50,6 +49,19 @@ class Login extends Component {
     }
 
     render() {
+        const responseFacebook = (response) => {
+            console.log(response);
+            console.log(response.accessToken);
+            const token  = response.accessToken;
+            localStorage.setItem('accessToken', token);
+            history.push("/home");
+        }
+        const responseGoogle = (response) => {
+            console.log(response.tokenId);
+            const token  = response.tokenId;
+            localStorage.setItem('tokenId', token);
+            history.push("/home");
+        }
         const { errors } = this.state;
         return (
             <div className="container-fluid">
@@ -80,6 +92,20 @@ class Login extends Component {
                                     {/*</p>*/}
                                     {/*onClick={() => history.push('/home')}*/}
                                 </form>
+                                <hr />
+                                <FacebookLogin
+                                    appId="161939435365683" //APP ID NOT CREATED YET
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                />
+                                <br />
+                                <br />
+                                <GoogleLogin
+                                    clientId="244833101393-tlvjoa831d8lpkqa03f5208ijg2vgi84.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                                    buttonText="LOGIN WITH GOOGLE"
+                                    onSuccess={responseGoogle}
+                                    onFailure={responseGoogle}
+                                />
                             </div>
                         </div>
 

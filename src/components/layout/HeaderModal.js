@@ -30,6 +30,7 @@ class HeaderModal extends Component {
                         <NavLink href="/signup" to="/signup">Signup</NavLink>
                         <NavLink href="/pagination" to="/pagination">Pagination</NavLink>
                         <NavLink href="/modal" to="/modal">Modal</NavLink>
+                        <NavLink href="/shopping" to="/shopping">Shopping</NavLink>
                     </Nav>
                     <Nav className="ml-auto" navbar>
                         <NavItem>

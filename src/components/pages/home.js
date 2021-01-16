@@ -3,20 +3,23 @@ import React, {Component} from 'react';
 import axios from "axios";
 import "./Login.css";
 import { Spinner } from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import ReactPaginate from 'react-paginate';
+import { connect } from 'react-redux'
+
 
 class Home extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-    state = {
-        isLoading: true,
-        data: [],
-        error: null,
-        offset: 0,
-        perPage: 10,
-        currentPage: 0
-    };
-    // this.handlePageClick = this.handlePageClick.bind(this);
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            data: [],
+            error: null,
+            offset: 0,
+            perPage: 10,
+            currentPage: 0
+        };
+    }
 
     getStyle = () => {
         return {
@@ -27,7 +30,11 @@ class Home extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        this.handleSelected();
+    }
+
+    handleSelected() {
         axios({
             method: "GET",
             url: "https://developers.zomato.com/api/v2.1/search",
@@ -41,9 +48,8 @@ class Home extends Component {
                     data: response.data.restaurants,
                     isLoading: false
                 })
-                console.log(response.data.restaurants);
+                console.log(response.data.results_shown);
                 this.setState.data = response.data.restaurants;
-                console.log(this.setState.data);
             })
             .catch(error => {
                 this.setState({ error, isLoading: false });
@@ -53,14 +59,15 @@ class Home extends Component {
 
     render() {
         const { isLoading, data } = this.state;
+
         return (
             <React.Fragment>
                 <h1>Restaurant data</h1>
-                <div>
+                <div className="home">
                     {!isLoading ? (
                         data.map(post => {
                             const { id, name } = post;
-                            console.log(post.restaurant.id, post.restaurant.name);
+                            console.log(post, post.restaurant.name);
                             return (
                                 <div key={post.restaurant.id}>
                                     <p>{post.restaurant.name}</p>
@@ -72,6 +79,7 @@ class Home extends Component {
                         <Spinner style={{ width: '3rem', height: '3rem' }} />
                     )}
                 </div>
+
             </React.Fragment>
         );
 

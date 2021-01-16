@@ -5,7 +5,7 @@ const initialState = {
     item: {}
 }
 
-export default function(state = initialState, action) {
+export default function postReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_POSTS:
             console.log('reducer');
@@ -28,3 +28,4 @@ export default function(state = initialState, action) {
             return state;
     }
 }
+

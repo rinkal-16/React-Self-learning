@@ -4,6 +4,8 @@ import LoginCss from './Login.css';
 import Home from './home';
 import { Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import history from './../../history';
+import PhoneInput from 'react-phone-number-input';
+import Autocomplete from 'react-google-autocomplete';
 
 const validateForm = errors => {
     let valid = true;
@@ -15,11 +17,12 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: null, email: null, password: null,
+            firstname: null, email: null, password: null, phone: null,
             errors: {
                 firstname: '',
                 password: '',
                 email: '',
+                phone: ''
             }
         };
     }
@@ -38,6 +41,9 @@ class Signup extends Component {
             case 'password':
                 errors.password =  value.length < 5 ? 'password must be 5' : '';
                 break;
+            case 'phone':
+                errors.phone =  value.length < 7 ? 'password must be 7' : '';
+                break;
             default:
                 break;
         }
@@ -53,7 +59,6 @@ class Signup extends Component {
     }
 
     render() {
-        // const { firstnameErr, emailErr, passwordErr } = this.state.formErrors;
         const { errors } = this.state;
         return (
             <div className="container-fluid">
@@ -82,6 +87,15 @@ class Signup extends Component {
                                     onChange={this.handleChange} noValidate />
                                     {errors.password.length > 0 &&
                                     <span class="alert alert-danger">{errors.password}</span>}
+                                </div>
+                                <div className="form-group">
+                                    <label>Phone number</label>
+                                    <input type="text" className="form-control" name="phone"
+                                           placeholder="Enter phone number"
+                                           onChange={this.handleChange} noValidate/>
+                                    {errors.phone.length > 0 &&
+                                    <span className="alert alert-danger">{errors.phone}</span>}
+
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                         {/*onClick={() => history.push('/login')}*/}

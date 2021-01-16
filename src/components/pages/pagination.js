@@ -34,7 +34,6 @@ class Pagination extends Component {
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 console.log(slice);
                 const postData = slice.map(pd =>
-                    <React.Fragment>
                         <div>
                             <Table striped bordered hover>
                                 <thead>
@@ -44,20 +43,18 @@ class Pagination extends Component {
                                         <th>Cuisines</th>
                                     </tr>
                                 </thead>
-                                <tbody key={pd.restaurant.id}>
-                                    <tr>
-                                        <td>{pd.restaurant.id}</td>
-                                        <td>{pd.restaurant.name}</td>
-                                        <td>{pd.restaurant.cuisines}</td>
-                                    </tr>
+                                <tbody>
+                                        <tr key={pd.restaurant.id}>
+                                            <td>{pd.restaurant.id}</td>
+                                            <td>{pd.restaurant.name}</td>
+                                            <td>{pd.restaurant.cuisines}</td>
+                                        </tr>
                                 </tbody>
                             </Table>
-                        </div>
-                    </React.Fragment>)
+                        </div>)
 
                 this.setState({
                     pageCount: Math.ceil(data.length / this.state.perPage),
-
                     postData
                 })
             });

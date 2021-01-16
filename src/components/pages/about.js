@@ -72,10 +72,6 @@ class About extends Component {
     render() {
         const postItems = this.props.posts.map((post, id) => (
             <div key={post.id}>
-                {/*<h3>{post.title}</h3>*/}
-                {/*<p>{post.body}</p>*/}
-                {/*<button key={post.name} onClick={() => this.props.deletePost(id)} >Delete {post.id} </button>*/}
-                {/*<App />*/}
                 <Card className="text-left">
                     <Card.Header>{post.title}</Card.Header>
                     <Card.Body>
@@ -89,13 +85,13 @@ class About extends Component {
             </div>
         ));
         return (
-                <React.Fragment>
-                    <PostForm />
-                    <hr />
-                    <div key={postItems.id}>
-                        <p>{postItems}</p>
-                    </div>
-                </React.Fragment>
+            <React.Fragment>
+                <PostForm />
+                <hr />
+                <div key={postItems.id}>
+                    <p>{postItems}</p>
+                </div>
+            </React.Fragment>
 
         );
     }
@@ -107,10 +103,10 @@ About.propTypes = {
     posts: PropTypes.array.isRequired,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     posts: state.posts.items,
-    newPost: state.posts.item,
-    deletePost: state.posts.item
+    newPost: state.posts,
+    deletePost: state.posts
 })
 
 export default connect(mapStateToProps, { fetchPosts, deletePost })(About);

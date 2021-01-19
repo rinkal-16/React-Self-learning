@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './Login.css';
 import PropTypes from 'prop-types';
 import PostForm from './PostForm';
-// import { Provider } from 'react-redux';
-// import store from './../../store';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../../actions/postActions';
 import Modal from 'react-modal';
@@ -20,6 +18,7 @@ const customStyles = {
         transform             : 'translate(-50%, -50%)'
     }
 };
+
 function App() {
 
     var subtitle;
@@ -103,10 +102,12 @@ About.propTypes = {
     posts: PropTypes.array.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-    posts: state.posts.items,
-    newPost: state.posts,
-    deletePost: state.posts
-})
+const mapStateToProps = (state) => {
+    return {
+        // posts: state.posts.items
+        // newPost: state.posts,
+        // deletePost: state.posts
+    }
+}
 
 export default connect(mapStateToProps, { fetchPosts, deletePost })(About);

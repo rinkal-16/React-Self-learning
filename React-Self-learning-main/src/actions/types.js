@@ -1,7 +1,9 @@
+// For postAction
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const NEW_POSTS = 'NEW_POSTS';
 export const DELETE_POST = 'DELETE_POST';
 
+// For cartAction
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SUB_QUANTITY = 'SUB_QUANTITY';

@@ -12,11 +12,6 @@ import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import SubMenu from "./Submenu";
-import { Switch, Route } from 'react-router-dom';
-import About from '../pages/about';
-import Pagination from '../pages/pagination';
-import Home from '../pages/home';
-import Shopping from '../pages/Shopping';
 
 const SideBar = ({ isOpen, toggle }) => (
     <div className={classNames("sidebar", { "is-open": isOpen })}>

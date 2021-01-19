@@ -53,7 +53,7 @@
 }
 body {
     /*background: #1C8EF9 !important;*/
-    min-height: fit-content;
+    min-height: 100%;
     display: flex;
     font-weight: 400;
     font-family: 'Fira Sans', sans-serif;

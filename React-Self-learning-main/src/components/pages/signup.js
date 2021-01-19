@@ -1,11 +1,5 @@
 import React, {Component } from 'react';
-import PropTypes from 'prop-types';
 import LoginCss from './Login.css';
-import Home from './home';
-import { Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
-import history from './../../history';
-import PhoneInput from 'react-phone-number-input';
-import Autocomplete from 'react-google-autocomplete';
 
 const validateForm = errors => {
     let valid = true;

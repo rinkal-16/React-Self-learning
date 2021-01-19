@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 // import { v4 as uuid } from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router,  } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import SideBar from './components/sidebar/Sidebar';
 import Content from './components/content/Content';
+import Login from './components/pages/login';
 
 // class App extends React.Component {
 //     state = {
@@ -86,15 +87,30 @@ import Content from './components/content/Content';
 function App()  {
     const [sidebarIsOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
-
+    const isAuthenticated = () => {
+        localStorage.clear();
+        if(localStorage.getItem('tokenId')) {
+            console.log('token get');
+            return true;
+        } else {
+            console.log('cannot get');
+            return false;
+        }
+    }    
     return (
-        <Router>
-            <div className="App wrapper">
-                <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
-                <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
-            </div>
-        </Router>
+        <div> 
+        { isAuthenticated ? 
+                <BrowserRouter>
+                    <div className="App wrapper">
+                        <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+                        <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+                    </div>    
+                </BrowserRouter>
+            
+            : <Login /> }
+        </div>
     )
 }
+
 export default App;
 

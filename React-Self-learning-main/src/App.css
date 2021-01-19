@@ -3,9 +3,9 @@
   margin: 0;
   padding: 0;
 }
-.container {
-  /*padding: 0 1rem;*/
-}
+/* .container {
+  padding: 0 1rem;
+} */
 a {
   text-decoration: none;
   color: white;
@@ -23,7 +23,7 @@ a {
 .App {
   display: flex;
   width: 100%;
-  height: auto;
+  /* height: 100%; */
   align-items: stretch;
   overflow-x: scroll;
 }
@@ -53,7 +53,7 @@ a:focus {
   color: #fff;
   margin-left: -250px;
   transition: all 0.5s;
-  height: auto;
+  /* height: auto; */
 }
 
 .sidebar.is-open {
@@ -77,7 +77,7 @@ a:focus {
 
 .menu-open {
   background: #6d7fcc;
-  height: auto;
+  /* height: auto; */
 }
 .nav-item > a{
   color: white;
@@ -167,7 +167,7 @@ li a.dropdown-toggle::after {
 }
 .box{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap
 }
 .material-icons{

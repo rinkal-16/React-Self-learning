@@ -4,8 +4,6 @@ import axios from "axios";
 import "./Login.css";
 import { Spinner } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactPaginate from 'react-paginate';
-import { connect } from 'react-redux'
 
 
 class Home extends Component {

@@ -1,32 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import LoginCss from './Login.css';
-import history from './../../history';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-import SideBar from '../sidebar/Sidebar';
-import Content from '../content/Content';
 
 const validateForm = errors => {
     let valid = true;
     Object.values(errors).forEach(val => val.length > 0 && (valid = false));
     return valid;
-}
-const HandleSubmit = (e) => {
-    const [sidebarIsOpen, setSidebarOpen] = useState(true);
-    const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
-    e.preventDefault();
-    if(validateForm(this.state.errors)) {
-        console.log('valid');
-        return (
-            <div>
-                <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
-                <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
-            </div>
-        )
-    } else {
-        console.log('invalid');
-    }
-
 }
 
 
@@ -40,6 +20,7 @@ class Login extends Component {
                 email: '',
             }
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (e) => {
@@ -59,6 +40,11 @@ class Login extends Component {
         this.setState({errors, [name]: value});
     }
 
+    handleSubmit = (e) => {
+        this.setState({selectedValue: e});
+        console.log('login try');
+    }
+    
     render() {
         const responseFacebook = (response) => {
             console.log(response);
@@ -68,18 +54,17 @@ class Login extends Component {
             // history.push("/home");
         }
         const responseGoogle = (response) => {
-            console.log(response.tokenId);
             const token  = response.tokenId;
             localStorage.setItem('tokenId', token);
-            history.push("/home");
+            console.log('login');
         }
         const { errors } = this.state;
         return (
             <div className="container-fluid">
                 <div className="d-flex mx-auto login">
-                        <div class="card">
-                            <div class="card-body">
-                                <form className={LoginCss} onSubmit={HandleSubmit} noValidate>
+                        <div className="card">
+                            <div className="card-body">   
+                                <form className={LoginCss} onSubmit={this.handleSubmit} noValidate>
                                     <h3 className="justify-content-center">Sign In</h3>
                                     <div className="form-group">
                                         <label>Email address</label>

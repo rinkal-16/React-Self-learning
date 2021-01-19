@@ -7,6 +7,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import "../../App.css";
+import { Elements, CardElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Shopping = () => {
     const stripe = loadStripe(
@@ -29,22 +31,22 @@ function CheckoutForm() {
         }
         setPaymentLoading(true);
         // const clientSecret = getClientSecret();
-        // const paymentResult = await stripe.confirmCardPayment(clientSecret, {
-        //     payment_method: {
-        //         card: elements.getElement(CardElement),
-        //         billing_details: {
-        //             name: "Faruq Yusuff",
-        //         },
-        //     },
-        // });
-        // setPaymentLoading(false);
-        // if (paymentResult.error) {
-        //     alert(paymentResult.error.message);
-        // } else {
-        //     if (paymentResult.paymentIntent.status === "succeeded") {
-        //         alert("Success!");
-        //     }
-        // }
+        const paymentResult = await stripe.confirmCardPayment({
+            payment_method: {
+                card: elements.getElement(CardElement),
+                billing_details: {
+                    name: "Faruq Yusuff",
+                },
+            },
+        });
+        setPaymentLoading(false);
+        if (paymentResult.error) {
+            alert(paymentResult.error.message);
+        } else {
+            if (paymentResult.paymentIntent.status === "succeeded") {
+                alert("Success!");
+            }
+        }
     };
 
     return (
@@ -95,4 +97,8 @@ function CheckoutForm() {
         </div>
     );
 }
+
 export default Shopping;
+
+
+
